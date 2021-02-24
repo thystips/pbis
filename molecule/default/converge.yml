@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include pbis-open"
+      include_role:
+        name: "pbis-open"
