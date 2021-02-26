@@ -1,2 +1,3 @@
 ---
-# defaults file for pbis-open
+install_gpg2: yes
+pbis_enterprise_version: no

@@ -1,2 +1,22 @@
 ---
-# tasks file for pbis-open
+- name: PBIS Open for CentOS/RedHat
+  include_tasks: install.yml
+  args:
+    apply:
+      tags:
+        - pbis_redhat
+  when: ansible_facts['os_family']|lower == 'redhat'
+  tags:
+  - pbis
+  - pbis_redhat
+
+- name: PBIS open for Debian/Ubuntu
+  include_tasks: install.yml
+  args:
+    apply:
+      tags:
+        - pbis_debian
+  when: ansible_facts['os_family']|lower == 'debian'
+  tags:
+  - pbis
+  - pbis_debian

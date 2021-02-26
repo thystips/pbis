@@ -1,2 +1,18 @@
 ---
-# vars file for pbis-open
+pbiso_package: pbis-open
+pbise_package: pbis-enterprise
+pbis_package: {{ pbise_package if pbis_enterprise_version else pbiso_package | default(pbiso_package) }}
+pbis_repo_args: {{ 'pbise non-free' if pbis_enterprise_version else 'pbiso main' | default('pbiso main') }}
+
+# Debian
+pbis_keyring_file: /usr/share/keyrings/pbiso-archive-keyring.gpg
+pbis_apt_repo: https://repo.pbis.beyondtrust.com/apt
+
+# Centos
+pbis_o_repo_gpgkey: https://repo.pbis.beyondtrust.com/yum/RPM-GPG-KEY-pbis-1024
+pbis_o_repo_name: pbiso
+pbis_e_repo_gpgkey: https://repo.pbis.beyondtrust.com/yum/RPM-GPG-KEY-pbis-4096
+pbis_e_repo_name: pbise
+pbis_repo_gpgkey: {{ pbis_e_repo_gpgkey if pbis_enterprise_version else pbis_o_repo_gpgkey | default(pbis_o_repo_gpgkey) }}
+pbis_repo_name: {{ pbis_e_repo_name if pbis_enterprise_version else pbis_o_repo_name | default(pbis_o_repo_name) }}
+pbis_repo_baseurl: https://repo.pbis.beyondtrust.com/yum/{{ pbis_repo_name }}/$basearch
