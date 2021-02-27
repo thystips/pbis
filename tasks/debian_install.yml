@@ -16,44 +16,11 @@
   - pbis_debian
   - pbis_gnupg2_add
 
-- name: Check if keyring folder exist
-  ansible.builtin.stat:
-    path: "/usr/share/keyrings"
-  register: keyring_folder
-  tags:
-  - pbis_debian
-  - pbis_keyring_check
-
-- name: Create keyring folder
-  ansible.builtin.file:
-    path: "/usr/share/keyrings"
-    state: directory
-    mode: 0755
-    owner: root
-    group: root
-  when: not keyring_folder.stat.exists
-  tags:
-  - pbis_debian
-  - pbis_keyring_add
-
-# TODO: idempotence
-
-- name: Get gpg repo key
-  ansible.builtin.shell: "curl https://repo.pbis.beyondtrust.com/apt/RPM-GPG-KEY-pbis | gpg --dearmor"
-  args:
-    warn: no
-  register: debian_repokey_file
-  tags:
-  - pbis_debian
-  - pbis_repokey_get
-
-- name: Add repo key 
-  ansible.builtin.copy:
-    content: "{{ debian_repokey_file.stdout }}"
-    dest: "{{ pbis_keyring_file }}"
-    owner: root
-    group: root
-    mode: '0644'
+- name: Add repo key
+  ansible.builtin.apt_key:
+    url: "{{ pbis_apt_key }}"
+    state: present
+    keyring: "{{ pbis_keyring_file }}"
   tags:
   - pbis_debian
   - pbis_repokey_add
