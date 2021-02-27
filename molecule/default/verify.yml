@@ -1,6 +1,5 @@
 ---
-# This is an example playbook to execute Ansible tests.
-
+# TODO: test if pbis is installed and conf
 - name: Verify
   hosts: all
   gather_facts: false

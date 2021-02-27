@@ -1,22 +1,16 @@
 ---
 - name: PBIS Open for CentOS/RedHat
-  include_tasks: install.yml
-  args:
-    apply:
-      tags:
-        - pbis_redhat
+  import_tasks: redhat_install.yml
   when: ansible_facts['os_family']|lower == 'redhat'
   tags:
   - pbis
   - pbis_redhat
 
 - name: PBIS open for Debian/Ubuntu
-  include_tasks: install.yml
-  args:
-    apply:
-      tags:
-        - pbis_debian
+  import_tasks: debian_install.yml
   when: ansible_facts['os_family']|lower == 'debian'
   tags:
   - pbis
   - pbis_debian
+
+# TODO: Configure pbis

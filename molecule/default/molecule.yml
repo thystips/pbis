@@ -2,9 +2,65 @@
 dependency:
   name: galaxy
 driver:
-  name: delegated
+  name: docker
 platforms:
-  - name: instance
+  - name: centos-8
+    image: jrei/systemd-centos:8
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /tmp
+      - /run/lock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: centos-7
+    image: jrei/systemd-centos:7
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /tmp
+      - /run/lock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: ubuntu-20.04
+    image: jrei/systemd-ubuntu:20.04
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /tmp
+      - /run/lock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  - name: ubuntu-18.04
+    image: jrei/systemd-ubuntu:18.04
+    pre_build_image: true
+    tmpfs:
+      - /run
+      - /tmp
+      - /run/lock
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+
+  # TODO: Add debian systemd images with python
+
+  # - name: debian-10
+  #   image: jrei/systemd-debian:10
+  #   pre_build_image: true
+  #   tmpfs:
+  #     - /run
+  #     - /tmp
+  #     - /run/lock
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
+  # - name: debian-9
+  #   image: jrei/systemd-debian:9
+  #   pre_build_image: true
+  #   tmpfs:
+  #     - /run
+  #     - /tmp
+  #     - /run/lock
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:ro
 provisioner:
   name: ansible
 verifier:

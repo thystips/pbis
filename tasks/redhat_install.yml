@@ -1,0 +1,58 @@
+---
+- name: Install libnsl
+  ansible.builtin.dnf:
+    name: "libnsl"
+    state: present
+  when: 
+  - ansible_distribution_major_version|int >= 8
+  tags:
+  - pbis_redhat
+  - pbis_libnsl_add
+
+# - name: Copy libnsl for pbis
+#   ansible.builtin.copy:
+#     src: "/opt/pbis/share/rhel/8.0/pbis.pp"
+#     dest: "/opt/pbis/share/pbis.pp"
+#     remote_src: yes
+#   when: 
+#   - ansible_distribution_major_version|int >= 8
+#   tags:
+#   - pbis_redhat
+#   - pbis_libnsl_add
+
+- name: Add pbis repository
+  ansible.builtin.yum_repository:
+    name: "{{ pbis_repo_name }}"
+    description: "{{ pbis_repo_name }}"
+    baseurl: "{{ pbis_repo_baseurl }}"
+    gpgkey: "{{ pbis_repo_gpgkey }}"
+    gpgcheck: yes
+    enabled : yes
+  tags:
+  - pbis_redhat
+  - pbis_repo_add
+
+- name: Install pbis
+  ansible.builtin.yum:
+    update_cache: yes
+    name: "{{ pbis_package }}"
+    state: present
+  vars:
+    ansible_python_interpreter: /usr/bin/python2
+  when:
+  - ansible_distribution_major_version|int >= 6
+  - ansible_distribution_major_version|int < 8
+  tags:
+  - pbis_redhat
+  - pbis_package_add
+
+- name: Install pbis
+  ansible.builtin.dnf:
+    update_cache: yes
+    name: "{{ pbis_package }}"
+    state: present
+  when:
+  - ansible_distribution_major_version|int >= 8
+  tags:
+  - pbis_redhat
+  - pbis_package_add

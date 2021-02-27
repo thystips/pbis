@@ -1,3 +1,5 @@
 ---
-install_gpg2: yes
 pbis_enterprise_version: no
+
+# Ubuntu/Debian only
+pbis_install_gnupg2: yes
