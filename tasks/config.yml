@@ -1,0 +1,39 @@
+---
+- name: PBIS AssumeDefaultDomain
+  shell: "{{ pbis_config_bin }} AssumeDefaultDomain {{ pbis_config_AssumeDefaultDomain }}"
+  tags:
+    - pbis_config
+    - pbis_config_AssumeDefaultDomain
+    - molecule-idempotence-notest
+
+- name: PBIS HomeDirTemplate
+  shell: "{{ pbis_config_bin }} HomeDirTemplate {{ pbis_config_HomeDirTemplate }}"
+  tags:
+    - pbis_config
+    - pbis_config_HomeDirTemplate
+    - molecule-idempotence-notest
+
+- name: PBIS RequireMembershipOf
+  shell: "{{ pbis_config_bin }} RequireMembershipOf {{ pbis_config_RequireMembershipOf | join(' ') }}"
+  tags:
+    - pbis_config
+    - pbis_config_RequireMembershipOf
+    - molecule-idempotence-notest
+
+- name: PBIS LoginShellTemplate
+  shell: "{{ pbis_config_bin }} LoginShellTemplate {{ pbis_config_LoginShellTemplate }}"
+  tags:
+    - pbis_config
+    - pbis_config_LoginShellTemplate
+    - molecule-idempotence-notest
+
+- name: PBIS UserIgnore
+  template:
+    src: user-ignore.j2
+    dest: /etc/pbis/user-ignore
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - pbis_config
+    - pbis_config_UserIgnore
