@@ -7,14 +7,14 @@
   - pbis_debian
   - pbis_dependencies_add
 
-- name: Install gnupg2
-  ansible.builtin.apt:
-    name: "gnupg2"
-    state: present
-  when: pbis_install_gnupg2
-  tags:
-  - pbis_debian
-  - pbis_gnupg2_add
+# - name: Install gnupg2
+#   ansible.builtin.apt:
+#     name: "gnupg2"
+#     state: present
+#   when: pbis_install_gnupg2
+#   tags:
+#   - pbis_debian
+#   - pbis_gnupg2_add
 
 - name: Add repo key
   ansible.builtin.apt_key:

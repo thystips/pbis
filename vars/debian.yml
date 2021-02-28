@@ -1,0 +1,7 @@
+---
+pbis_keyring_file: /usr/share/keyrings/pbiso-archive-keyring.gpg
+pbis_apt_key: https://repo.pbis.beyondtrust.com/apt/RPM-GPG-KEY-pbis
+pbis_apt_repo: https://repo.pbis.beyondtrust.com/apt
+pbis_repo_args: "{{ 'pbise non-free' if pbis_enterprise_version else 'pbiso main' | default('pbiso main') }}"
+pbis_packages_dependencies:
+  - python3-apt

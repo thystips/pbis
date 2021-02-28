@@ -28,6 +28,7 @@
     gpgkey: "{{ pbis_repo_gpgkey }}"
     gpgcheck: yes
     enabled : yes
+  notify: yum-clean-all
   tags:
   - pbis_redhat
   - pbis_repo_add
