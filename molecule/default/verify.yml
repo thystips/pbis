@@ -1,9 +1,8 @@
 ---
-# TODO: test if pbis is installed and conf
 - name: Verify
   hosts: all
-  gather_facts: false
+  gather_facts: true
   tasks:
-  - name: Example assertion
-    assert:
-      that: true
+    - name: "Include test_ansible-pbis"
+      include_role:
+        name: "test_ansible-pbis"
