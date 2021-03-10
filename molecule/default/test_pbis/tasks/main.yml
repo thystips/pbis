@@ -1,8 +1,9 @@
 ---
-- name: Include  variables.
+- name: Include variables
   include_vars: "../../../vars/main.yml"
 
-- include_vars: "../../../tests/group_vars/all.yml"
+- name: Include group variables
+  include_vars: "../../../tests/group_vars/all.yml"
 
 - name: Include OS-specific variables.
   include_vars: "../../../vars/{{ ansible_os_family | lower }}.yml"
@@ -15,10 +16,10 @@
   - pbis_package_test
 
 - name: "PBIS test result"
-  debug: 
+  debug:
     msg: "{{ pbis_package }} package found"
   when:
-  -  "pbis_package in ansible_facts.packages"
+  - "pbis_package in ansible_facts.packages"
   failed_when:
   - "pbis_package not in ansible_facts.packages"
   tags:
@@ -26,7 +27,7 @@
   - pbis_package_test
 
 - name: Check PBIS status
-  shell: /opt/pbis/bin/pbis-status
+  shell: "/opt/pbis/bin/pbis-status"
   tags:
   - pbis_test
   - pbis_package_test
@@ -37,9 +38,9 @@
   tags:
   - pbis_test
   - pbis_config_test
-    
+
 - name: "PBIS show conf"
-  debug: 
+  debug:
     msg: "{{ pbis_config_dump.stdout_lines }}"
   failed_when:
   - pbis_config_dump.stdout == ''

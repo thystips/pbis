@@ -5,4 +5,4 @@
   tasks:
     - name: "Include test_ansible-pbis"
       include_role:
-        name: "test_ansible-pbis"
+        name: test_pbis

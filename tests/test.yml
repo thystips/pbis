@@ -5,4 +5,4 @@
     - showpass: true
     - pbis_join: false
   roles:
-    - ansible-pbis
+    - pbis

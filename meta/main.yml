@@ -1,14 +1,16 @@
 galaxy_info:
+  role_name: pbis
   author: ThysTips
-  description: PBIS installation
+  description: PBIS install
+  company: antoinethys.com
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
   # issue_tracker_url: http://example.com/issue/tracker
 
-  license: GPL-3.0-only
+  license: GPLv3
 
-  min_ansible_version: 3
+  min_ansible_version: "3"
 
   # If this a Container Enabled role, provide the minimum Ansible Container version.
   # min_ansible_container_version:
@@ -16,17 +18,18 @@ galaxy_info:
   platforms:
   - name: Ubuntu
     versions:
-    - 20.04
-    - 18.04
+    - groovy
+    - focal
+    - cosmic
   - name: Debian
     versions:
-    - testing
-    - 10
-    - 9
-  - name: Centos / Redhat
+    - bullseye
+    - buster
+    - stretch
+  - name: EL
     versions:
-    - 8
-    - 7
+    - "7"
+    - "6"
 
   galaxy_tags:
   - pbis

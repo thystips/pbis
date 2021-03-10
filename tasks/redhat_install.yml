@@ -3,7 +3,7 @@
   ansible.builtin.dnf:
     name: "libnsl"
     state: present
-  when: 
+  when:
   - ansible_distribution_major_version|int >= 8
   tags:
   - pbis_redhat
@@ -27,7 +27,7 @@
     baseurl: "{{ pbis_repo_baseurl }}"
     gpgkey: "{{ pbis_repo_gpgkey }}"
     gpgcheck: yes
-    enabled : yes
+    enabled: yes
   notify: yum-clean-all
   tags:
   - pbis_redhat

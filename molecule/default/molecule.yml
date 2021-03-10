@@ -1,4 +1,9 @@
 ---
+molecule:
+  ignore_paths:
+    - .github
+    - .vscode
+    - .git
 dependency:
   name: galaxy
 driver:
@@ -68,3 +73,8 @@ provisioner:
   name: ansible
 verifier:
   name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8
