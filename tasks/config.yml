@@ -1,30 +1,20 @@
 ---
-- name: PBIS AssumeDefaultDomain
-  shell: "{{ pbis_config_bin }} AssumeDefaultDomain {{ pbis_config_AssumeDefaultDomain }}"
+- name: PBIS create Configuration
+  template:
+    src: pbis.conf.j2
+    dest: "{{ pbis_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
   tags:
     - pbis_config
-    - pbis_config_AssumeDefaultDomain
-    - molecule-idempotence-notest
+    - pbis_config_add
 
-- name: PBIS HomeDirTemplate
-  shell: "{{ pbis_config_bin }} HomeDirTemplate {{ pbis_config_HomeDirTemplate }}"
+- name: PBIS Apply conf
+  shell: "{{ pbis_bin }}/config --file  {{ pbis_config_file }}"
   tags:
     - pbis_config
-    - pbis_config_HomeDirTemplate
-    - molecule-idempotence-notest
-
-- name: PBIS RequireMembershipOf
-  shell: "{{ pbis_config_bin }} RequireMembershipOf {{ pbis_config_RequireMembershipOf | join(' ') }}"
-  tags:
-    - pbis_config
-    - pbis_config_RequireMembershipOf
-    - molecule-idempotence-notest
-
-- name: PBIS LoginShellTemplate
-  shell: "{{ pbis_config_bin }} LoginShellTemplate {{ pbis_config_LoginShellTemplate }}"
-  tags:
-    - pbis_config
-    - pbis_config_LoginShellTemplate
+    - pbis_config_add
     - molecule-idempotence-notest
 
 - name: PBIS UserIgnore
@@ -36,4 +26,4 @@
     mode: '0644'
   tags:
     - pbis_config
-    - pbis_config_UserIgnore
+    - pbis_config_UserIgnore_add

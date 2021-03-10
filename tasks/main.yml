@@ -26,4 +26,9 @@
   - pbis
   - pbis_config
 
-# TODO: Configure pbis
+- name: PBIS Joint Domain
+  import_tasks: join.yml
+  when: pbis_join
+  tags:
+  - pbis
+  - pbis_join

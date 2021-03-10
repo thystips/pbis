@@ -5,4 +5,5 @@ pbise_package: pbis-enterprise
 pbis_package: "{{ pbise_package if pbis_enterprise_version else pbiso_package | default(pbiso_package) }}"
 
 # Config
-pbis_config_bin: "/opt/pbis/bin/config"
+pbis_bin: "/opt/pbis/bin/"
+pbis_config_file: "/etc/pbis.conf"

@@ -1,0 +1,5 @@
+DisplayMotd {{ pbis_config_DisplayMotd | default("false") }}
+AssumeDefaultDomain {{ pbis_config_AssumeDefaultDomain | default("false") }}
+HomeDirTemplate {{ pbis_config_HomeDirTemplate | default("%H/local/%D/%U") }}
+LoginShellTemplate {{ pbis_config_LoginShellTemplate | default("/usr/bin/sh") }}
+RequireMembershipOf {{ pbis_config_RequireMembershipOf | join(' ') | default("") }}

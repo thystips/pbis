@@ -2,17 +2,19 @@
 pbis_enterprise_version: no
 
 pbis_config: true
-
-pbis_config_AssumeDefaultDomain: true
-
+pbis_config_AssumeDefaultDomain: "true"
 pbis_config_HomeDirTemplate: "%H/%U"
-
 pbis_config_RequireMembershipOf: 
   - 'DOMAIN\\group'
   - 'DOMAIN\\group2'
-
 pbis_config_LoginShellTemplate: "/usr/bin/bash"
-
+pbis_config_DisplayMotd: "true"
 pbis_config_UserIgnore:
   - root
   - localadmin
+
+pbis_join: true
+pbis_domain: exemple.loc
+pbis_join_user: administrator
+pbis_join_password: password
+pbis_join_ou: ""

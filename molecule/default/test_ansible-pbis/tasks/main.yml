@@ -37,12 +37,12 @@
   tags:
   - pbis_test
   - pbis_config_test
-
+    
 - name: "PBIS show conf"
   debug: 
     msg: "{{ pbis_config_dump.stdout_lines }}"
   failed_when:
-  - "pbis_config_dump.stdout == ''"
+  - pbis_config_dump.stdout == ''
   tags:
   - pbis_test
   - pbis_package_test
