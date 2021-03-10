@@ -49,38 +49,8 @@ platforms:
       - pbis
       - debian
 
-  - name: ubuntu-18.04
-    image: thystips/molecule-systemd:ubuntu-18.04
-    pre_build_image: true
-    privileged: true
-    command: /sbin/init
-    tmpfs:
-      - /run
-      - /tmp
-      - /run/lock
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    groups:
-      - pbis
-      - debian
-
   - name: debian-10
     image: thystips/molecule-systemd:debian-10
-    pre_build_image: true
-    privileged: true
-    command: /sbin/init
-    tmpfs:
-      - /run
-      - /tmp
-      - /run/lock
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
-    groups:
-      - pbis
-      - debian
-
-  - name: debian-9
-    image: thystips/molecule-systemd:debian-9
     pre_build_image: true
     privileged: true
     command: /sbin/init
