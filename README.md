@@ -3,20 +3,33 @@ PBIS
 
 Ansible role for deploying PowerBroker Identity Services (PBIS).
 
-Requirements
-------------
-
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+**defaults/main.yml**
 
-Dependencies
-------------
+- **pbis_enterprise_version** : Use enterprise or open version (boolean)
+- **pbis_config** : Configure PBIS (boolean)
+- **pbis_config_AssumeDefaultDomain** : PBIS config AssumeDefaultDomain (boolean)
+- **pbis_config_HomeDirTemplate** : PBIS config HomeDirTemplate (string)
+- **pbis_config_RequireMembershipOf** : PBIS config RequireMembershipOf  (list)
+- **pbis_config_LoginShellTemplate** : PBIS config LoginShellTemplate (string)
+- **pbis_config_DisplayMotd** : PBIS config DisplayMotd (boolean in string)
+- **pbis_config_UserIgnore** : List of users for local and not LDAP connection (list)
+- **pbis_join** : Join domain with PBIS (boolean)
+- **pbis_domain** : Domain to join (string)*
+- **pbis_join_user** : User for domain join (string)*
+- **pbis_join_password** : Password for domain join (string)*
+- **pbis_join_ou** : OU to join, not used when not defined
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+**vars/\***
+
+Vars in vars/* files start with `pbis_` and are required to determine repo url and package name. 
+
+**External**
+
+- **showpass** : Show log on pbis join when defined
 
 Example Playbook
 ----------------
