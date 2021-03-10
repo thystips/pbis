@@ -32,3 +32,4 @@
   tags:
   - pbis
   - pbis_join
+  - molecule-notest

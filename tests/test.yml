@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
   remote_user: root
+  vars:
+    - showpass: true
+    - pbis_join: false
   roles:
     - ansible-pbis

@@ -24,3 +24,5 @@ pbis_domain: exemple.loc
 pbis_join_user: administrator
 pbis_join_password: password
 pbis_join_ou: ""
+
+showpass: true
