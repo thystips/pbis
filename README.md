@@ -1,7 +1,7 @@
-PBIS Open
+PBIS
 =========
 
-Ansible role for deploying PowerBroker Identity Services (PBIS) Open Edition
+Ansible role for deploying PowerBroker Identity Services (PBIS).
 
 Requirements
 ------------

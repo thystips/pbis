@@ -1,0 +1,44 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name: "{{ pbis_packages_dependencies }}"
+    state: present
+  tags:
+  - pbis_debian
+  - pbis_dependencies_add
+
+# - name: Install gnupg2
+#   ansible.builtin.apt:
+#     name: "gnupg2"
+#     state: present
+#   when: pbis_install_gnupg2
+#   tags:
+#   - pbis_debian
+#   - pbis_gnupg2_add
+
+- name: Add repo key
+  ansible.builtin.apt_key:
+    url: "{{ pbis_apt_key }}"
+    state: present
+    keyring: "{{ pbis_keyring_file }}"
+  tags:
+  - pbis_debian
+  - pbis_repokey_add
+
+- name: Add pbis repository
+  ansible.builtin.apt_repository:
+    repo: "deb [signed-by={{ pbis_keyring_file }}] {{ pbis_apt_repo }} {{ pbis_repo_args }}"
+    state: present
+  when: not pbis_enterprise_version
+  tags:
+  - pbis_debian
+  - pbis_repo_add
+
+- name: Install pbis
+  ansible.builtin.apt:
+    update_cache: yes
+    name: "{{ pbis_package }}"
+    state: present
+  tags:
+  - pbis_debian
+  - pbis_package_add

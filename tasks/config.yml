@@ -1,0 +1,29 @@
+---
+- name: PBIS create Configuration
+  template:
+    src: pbis.conf.j2
+    dest: "{{ pbis_config_file }}"
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - pbis_config
+    - pbis_config_add
+
+- name: PBIS Apply conf
+  shell: "{{ pbis_bin }}/config --file  {{ pbis_config_file }}"
+  tags:
+    - pbis_config
+    - pbis_config_add
+    - molecule-idempotence-notest
+
+- name: PBIS UserIgnore
+  template:
+    src: user-ignore.j2
+    dest: /etc/pbis/user-ignore
+    owner: root
+    group: root
+    mode: '0644'
+  tags:
+    - pbis_config
+    - pbis_config_UserIgnore_add

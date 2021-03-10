@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include pbis-open"
+    - name: "Include ansible-pbis"
       include_role:
-        name: "pbis-open"
+        name: "ansible-pbis"

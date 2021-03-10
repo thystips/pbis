@@ -1,0 +1,10 @@
+---
+- name: Domain Join
+  shell: "{{ pbis_bin }}/domainjoin-cli join {{ '--ou '~pbis_join_ou if pbis_join_ou }} {{pbis_domain}} {{pbis_join_user}} '{{pbis_join_password}}'"
+  no_log: "{{ showpass is not defined }}"
+  tags:
+    - pbis_join
+    - pbis_join_add
+    
+- debug:
+    msg: "Reboot to apply pbis join"

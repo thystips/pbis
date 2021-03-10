@@ -1,2 +1,34 @@
 ---
-# tasks file for pbis-open
+- name: Include OS-specific variables.
+  include_vars: "../vars/{{ ansible_os_family | lower }}.yml"
+  tags:
+  - pbis
+  - pbis_vars
+
+- name: PBIS for CentOS/RedHat
+  import_tasks: redhat_install.yml
+  when: ansible_facts['os_family']|lower == 'redhat'
+  tags:
+  - pbis
+  - pbis_redhat
+
+- name: PBIS for Debian/Ubuntu
+  import_tasks: debian_install.yml
+  when: ansible_facts['os_family']|lower == 'debian'
+  tags:
+  - pbis
+  - pbis_debian
+
+- name: PBIS Configuration
+  import_tasks: config.yml
+  when: pbis_config
+  tags:
+  - pbis
+  - pbis_config
+
+- name: PBIS Joint Domain
+  import_tasks: join.yml
+  when: pbis_join
+  tags:
+  - pbis
+  - pbis_join

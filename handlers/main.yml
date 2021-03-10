@@ -1,2 +1,8 @@
 ---
-# handlers file for pbis-open
+- name: yum-clean-all
+  command: yum clean all
+  args:
+    warn: no
+  tags:
+  - pbis_redhat
+  - pbis_yum_clean
