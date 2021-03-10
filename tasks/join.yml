@@ -1,7 +1,7 @@
 ---
 - name: Domain Join
-  shell: "{{ pbis_bin }}/domainjoin-cli join --ou {{pbis_join_ou}} {{pbis_domain}} {{pbis_join_user}} '{{pbis_join_pass}}'"
+  shell: "{{ pbis_bin }}/domainjoin-cli join {{ '--ou'~pbis_join_ou if pbis_join_ou }} {{pbis_domain}} {{pbis_join_user}} '{{pbis_join_pass}}'"
   tags:
     - pbis_join
     - pbis_join_add
-    - molecule-idempotence-notest
+    
