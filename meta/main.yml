@@ -32,6 +32,6 @@ galaxy_info:
     - "6"
 
   galaxy_tags:
-  - pbis
+  - sysadmin
 
 dependencies: []

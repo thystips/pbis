@@ -3,6 +3,6 @@
   hosts: all
   gather_facts: true
   tasks:
-    - name: "Include test_ansible-pbis"
+    - name: "Include test_pbis"
       include_role:
         name: test_pbis
